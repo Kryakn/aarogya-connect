@@ -1,24 +1,55 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Toaster } from "sonner";
+import { Navbar } from "@/components/site/Navbar";
+import { Hero } from "@/components/site/Hero";
+import { About } from "@/components/site/About";
+import { Doctors } from "@/components/site/Doctors";
+import { Services } from "@/components/site/Services";
+import { Facilities } from "@/components/site/Facilities";
+import { WhyChoose } from "@/components/site/WhyChoose";
+import { Infrastructure } from "@/components/site/Infrastructure";
+import { QueryAssistant } from "@/components/site/QueryAssistant";
+import { Contact } from "@/components/site/Contact";
+import { Footer } from "@/components/site/Footer";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Aarogya Care Clinic — Trusted Doctors, Complete Care" },
+      {
+        name: "description",
+        content:
+          "Multi-specialty clinic in Vijay Nagar, Indore offering general medicine, pediatrics, women's health, pharmacy, pathology and diagnostic support.",
+      },
+      { property: "og:title", content: "Aarogya Care Clinic" },
+      {
+        property: "og:description",
+        content: "Trusted Doctors. Complete Care. Better Health.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen bg-background">
+      <Navbar />
+      <main>
+        <Hero />
+        <About />
+        <Doctors />
+        <Services />
+        <Facilities />
+        <WhyChoose />
+        <Infrastructure />
+        <QueryAssistant />
+        <Contact />
+      </main>
+      <Footer />
+      <Toaster position="top-right" richColors />
     </div>
   );
 }
