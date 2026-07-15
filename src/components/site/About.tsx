@@ -6,6 +6,7 @@ const stats = [
   { value: "15+", label: "Medical Services" },
   { value: "10,000+", label: "Patients Served" },
   { value: "6 Days", label: "Open Every Week" },
+  { value: "3", label: "Connected Facilities" },
 ];
 
 export function About() {
@@ -20,14 +21,15 @@ export function About() {
             Ethical, affordable, and patient-first care
           </h2>
           <p className="mt-5 text-muted-foreground leading-relaxed">
-            Aarogya Care Clinic is a multi-specialty healthcare center focused on accessible,
-            ethical, and patient-centered treatment. We combine general consultation, specialist
-            care, pharmacy access, pathology support, and diagnostic coordination in one convenient
-            location.
+            Shrivastav Multispeciality Clinic is a patient-focused healthcare centre offering
+            general medicine, paediatric care, women's health consultation, preventive care,
+            pharmacy access, pathology support, and diagnostic coordination. We focus on clear
+            communication, affordable consultation, ethical practices, hygiene, privacy, and
+            convenient access to essential services.
           </p>
         </div>
 
-        <div className="mt-14 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div className="mt-14 grid grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6">
           {stats.map((s, i) => (
             <motion.div
               key={s.label}

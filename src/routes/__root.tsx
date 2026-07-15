@@ -77,13 +77,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Aarogya Care Clinic — Trusted Doctors, Complete Care" },
+      { title: "Shrivastav Multispeciality Clinic — Trusted Doctors, Complete Care" },
       {
         name: "description",
         content:
-          "Multi-specialty clinic in Vijay Nagar, Indore offering general medicine, pediatrics, women's health, pharmacy, pathology and diagnostic support.",
+          "Multispeciality clinic in Vijay Nagar, Indore offering general medicine, paediatrics, women's health, pharmacy, pathology and diagnostic support with AI-powered clinic assistance.",
       },
-      { name: "author", content: "Aarogya Care Clinic" },
+      { name: "author", content: "Shrivastav Multispeciality Clinic" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
