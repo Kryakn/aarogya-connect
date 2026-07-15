@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { Menu, X, Stethoscope } from "lucide-react";
+import { Menu, X, HeartPulse, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { clinic } from "@/lib/clinic-data";
 
 const links = [
   { href: "#home", label: "Home" },
@@ -9,9 +10,16 @@ const links = [
   { href: "#doctors", label: "Doctors" },
   { href: "#services", label: "Services" },
   { href: "#facilities", label: "Facilities" },
-  { href: "#query", label: "Ask a Query" },
+  { href: "#assistant", label: "Ask AI" },
   { href: "#contact", label: "Contact" },
 ];
+
+function focusChatInput() {
+  requestAnimationFrame(() => {
+    const el = document.getElementById("chat-input") as HTMLTextAreaElement | null;
+    el?.focus();
+  });
+}
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
@@ -29,18 +37,18 @@ export function Navbar() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         scrolled
-          ? "bg-background/80 backdrop-blur-lg border-b border-border shadow-[var(--shadow-soft)]"
-          : "bg-transparent",
+          ? "bg-background/85 backdrop-blur-lg border-b border-border shadow-[var(--shadow-soft)]"
+          : "bg-background/60 backdrop-blur",
       )}
     >
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <a href="#home" className="flex items-center gap-2 group">
-          <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-primary to-teal grid place-items-center text-primary-foreground shadow-[var(--shadow-soft)]">
-            <Stethoscope className="h-5 w-5" />
+        <a href="#home" className="flex items-center gap-2 group" aria-label={clinic.name}>
+          <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-primary to-teal grid place-items-center text-primary-foreground shadow-[var(--shadow-soft)] font-bold text-xs tracking-wider">
+            <HeartPulse className="h-4 w-4" />
           </div>
           <div className="leading-tight">
-            <div className="text-sm font-bold font-heading text-foreground">Aarogya Care</div>
-            <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Clinic</div>
+            <div className="text-sm font-bold font-heading text-foreground">Shrivastav Clinic</div>
+            <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Multispeciality</div>
           </div>
         </a>
 
@@ -56,9 +64,23 @@ export function Navbar() {
           ))}
         </div>
 
-        <div className="hidden lg:block">
-          <Button asChild size="sm" className="rounded-full px-5">
-            <a href="#query">Ask a Query</a>
+        <div className="hidden lg:flex items-center gap-2">
+          <a
+            href={`tel:${clinic.phoneRaw}`}
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-destructive hover:opacity-80 px-3 py-1.5 rounded-full border border-destructive/30"
+          >
+            <Phone className="h-3.5 w-3.5" /> Emergency
+          </a>
+          <Button
+            size="sm"
+            className="rounded-full px-5"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById("assistant")?.scrollIntoView({ behavior: "smooth" });
+              focusChatInput();
+            }}
+          >
+            Ask AI
           </Button>
         </div>
 
@@ -84,8 +106,21 @@ export function Navbar() {
                 {l.label}
               </a>
             ))}
-            <Button asChild className="w-full mt-2 rounded-full">
-              <a href="#query" onClick={() => setOpen(false)}>Ask a Query</a>
+            <a
+              href={`tel:${clinic.phoneRaw}`}
+              className="flex items-center justify-center gap-2 mt-2 w-full py-3 rounded-full border border-destructive/40 text-destructive font-semibold"
+            >
+              <Phone className="h-4 w-4" /> Emergency Call
+            </a>
+            <Button
+              className="w-full mt-2 rounded-full"
+              onClick={() => {
+                setOpen(false);
+                document.getElementById("assistant")?.scrollIntoView({ behavior: "smooth" });
+                focusChatInput();
+              }}
+            >
+              Ask AI
             </Button>
           </div>
         </div>

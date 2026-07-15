@@ -1,14 +1,22 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Users, Award, HeartHandshake, Sparkles } from "lucide-react";
+import { ArrowRight, Users, Award, HeartHandshake, Sparkles, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import clinicHero from "@/assets/clinic-hero.jpg";
+import { clinic } from "@/lib/clinic-data";
 
 const trust = [
   { icon: Users, label: "3 Experienced Doctors" },
   { icon: Award, label: "10+ Years Avg. Experience" },
   { icon: HeartHandshake, label: "Patient-Friendly Care" },
-  { icon: Sparkles, label: "Clean & Hygienic Clinic" },
+  { icon: Sparkles, label: "AI-Powered Assistance" },
 ];
+
+function focusChatInput() {
+  requestAnimationFrame(() => {
+    const el = document.getElementById("chat-input") as HTMLTextAreaElement | null;
+    el?.focus();
+  });
+}
 
 export function Hero() {
   return (
@@ -25,7 +33,7 @@ export function Hero() {
         >
           <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 text-primary px-4 py-1.5 text-xs font-medium">
             <span className="h-1.5 w-1.5 rounded-full bg-success animate-pulse" />
-            Aarogya Care Clinic · Vijay Nagar, Indore
+            {clinic.name} · Vijay Nagar, Indore
           </div>
           <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-bold font-heading text-foreground leading-[1.1]">
             Complete Healthcare for{" "}
@@ -34,18 +42,34 @@ export function Hero() {
             </span>
           </h1>
           <p className="mt-5 text-base sm:text-lg text-muted-foreground max-w-xl leading-relaxed">
-            Consult experienced doctors, access trusted diagnostic support, and get reliable
-            healthcare guidance — all in one welcoming place.
+            Consult experienced doctors, access trusted diagnostic and pharmacy support, and get
+            quick AI-powered assistance for appointments, services, timings, and general
+            clinic-related queries.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <Button asChild size="lg" className="rounded-full px-6 shadow-[var(--shadow-elegant)]">
-              <a href="#query">
-                Ask a Health Query <ArrowRight className="ml-1 h-4 w-4" />
-              </a>
+            <Button
+              size="lg"
+              className="rounded-full px-6 shadow-[var(--shadow-elegant)]"
+              onClick={() => {
+                document.getElementById("assistant")?.scrollIntoView({ behavior: "smooth" });
+                focusChatInput();
+              }}
+            >
+              Ask AI Assistant <ArrowRight className="ml-1 h-4 w-4" />
             </Button>
             <Button asChild size="lg" variant="outline" className="rounded-full px-6">
               <a href="#doctors">Meet Our Doctors</a>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="rounded-full px-6 border-destructive/40 text-destructive hover:bg-destructive/5 hover:text-destructive"
+            >
+              <a href={`tel:${clinic.phoneRaw}`}>
+                <Phone className="mr-1 h-4 w-4" /> Call for Emergency
+              </a>
             </Button>
           </div>
 
@@ -70,7 +94,7 @@ export function Hero() {
           <div className="relative rounded-3xl overflow-hidden shadow-[var(--shadow-elegant)] border border-border">
             <img
               src={clinicHero}
-              alt="Aarogya Care Clinic interior"
+              alt={`${clinic.name} interior`}
               width={1600}
               height={1100}
               className="w-full h-[420px] lg:h-[520px] object-cover"

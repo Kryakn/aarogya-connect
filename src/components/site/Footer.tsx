@@ -1,4 +1,4 @@
-import { Stethoscope, MapPin, Phone, Mail } from "lucide-react";
+import { HeartPulse, MapPin, Phone, Mail } from "lucide-react";
 import { clinic } from "@/lib/clinic-data";
 
 export function Footer() {
@@ -8,17 +8,22 @@ export function Footer() {
         <div className="md:col-span-2">
           <div className="flex items-center gap-2">
             <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-primary to-teal grid place-items-center text-primary-foreground">
-              <Stethoscope className="h-5 w-5" />
+              <HeartPulse className="h-5 w-5" />
             </div>
             <div>
-              <div className="font-bold font-heading">Aarogya Care Clinic</div>
-              <div className="text-xs text-muted-foreground">Trusted Doctors. Complete Care.</div>
+              <div className="font-bold font-heading">{clinic.name}</div>
+              <div className="text-xs text-muted-foreground">{clinic.tagline}</div>
             </div>
           </div>
           <p className="mt-4 text-sm text-muted-foreground max-w-md leading-relaxed">
-            A multi-specialty neighborhood clinic offering ethical, affordable, and patient-friendly
-            healthcare — with attached pharmacy, pathology, and diagnostic support.
+            A patient-focused multispeciality clinic offering ethical, affordable healthcare — with
+            attached pharmacy, pathology, diagnostic support, and AI-powered clinic assistance.
           </p>
+          <div className="mt-4 text-xs text-destructive font-medium">
+            Emergency: <a href={`tel:${clinic.phoneRaw}`} className="underline">{clinic.phone}</a>
+            {" · "}
+            <a href={`tel:${clinic.emergencyNumber}`} className="underline">Call {clinic.emergencyNumber}</a>
+          </div>
         </div>
 
         <div>
@@ -28,7 +33,8 @@ export function Footer() {
             <li><a href="#doctors" className="hover:text-primary">Doctors</a></li>
             <li><a href="#services" className="hover:text-primary">Services</a></li>
             <li><a href="#facilities" className="hover:text-primary">Facilities</a></li>
-            <li><a href="#query" className="hover:text-primary">Ask a Query</a></li>
+            <li><a href="#assistant" className="hover:text-primary">Ask AI</a></li>
+            <li><a href="#query" className="hover:text-primary">Submit Query</a></li>
           </ul>
         </div>
 
@@ -44,8 +50,8 @@ export function Footer() {
 
       <div className="border-t border-border">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-muted-foreground">
-          <div>© {new Date().getFullYear()} Aarogya Care Clinic. All rights reserved.</div>
-          <div>For emergencies, please call your local emergency number.</div>
+          <div>© 2026 {clinic.name}. All rights reserved.</div>
+          <div>Designed for patient convenience and general clinic assistance.</div>
         </div>
       </div>
     </footer>
