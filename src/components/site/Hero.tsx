@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Users, Award, HeartHandshake, Sparkles, Phone } from "lucide-react";
+import { FaTelegramPlane } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import clinicHero from "@/assets/clinic-hero.jpg";
 import { clinic } from "@/lib/clinic-data";
 
