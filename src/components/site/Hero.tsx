@@ -70,10 +70,10 @@ export function Hero() {
                     className="rounded-full px-6 border-[#229ED9]/40 text-[#229ED9] hover:bg-[#229ED9]/10 hover:text-[#229ED9]"
                   >
                     <a
-                      href="https://t.me/Doc_Assistant"
+                      href="https://web.telegram.org/a/#8947991358"
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label="Chat with Doc_Assistant on Telegram"
+                      aria-label="Chat with @Clinic_Assistant1_bot on Telegram"
                     >
                       <FaTelegramPlane className="mr-1 h-4 w-4" /> Chat on Telegram
                     </a>
