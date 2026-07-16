@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Users, Award, HeartHandshake, Sparkles, Phone } from "lucide-react";
+import { FaTelegramPlane } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import clinicHero from "@/assets/clinic-hero.jpg";
 import { clinic } from "@/lib/clinic-data";
 
@@ -49,6 +51,38 @@ export function Hero() {
 
           <div className="mt-8 flex flex-wrap gap-3">
             <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="rounded-full px-6 border-destructive/40 text-destructive hover:bg-destructive/5 hover:text-destructive"
+            >
+              <a href={`tel:${clinic.phoneRaw}`}>
+                <Phone className="mr-1 h-4 w-4" /> Call for Emergency
+              </a>
+            </Button>
+            <TooltipProvider delayDuration={200}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    asChild
+                    size="lg"
+                    variant="outline"
+                    className="rounded-full px-6 border-[#229ED9]/40 text-[#229ED9] hover:bg-[#229ED9]/10 hover:text-[#229ED9]"
+                  >
+                    <a
+                      href="https://t.me/Doc_Assistant"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Chat with Doc_Assistant on Telegram"
+                    >
+                      <FaTelegramPlane className="mr-1 h-4 w-4" /> Chat on Telegram
+                    </a>
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>Continue chatting with our AI Assistant on Telegram</TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            <Button
               size="lg"
               className="rounded-full px-6 shadow-[var(--shadow-elegant)]"
               onClick={() => {
@@ -60,16 +94,6 @@ export function Hero() {
             </Button>
             <Button asChild size="lg" variant="outline" className="rounded-full px-6">
               <a href="#doctors">Meet Our Doctors</a>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="rounded-full px-6 border-destructive/40 text-destructive hover:bg-destructive/5 hover:text-destructive"
-            >
-              <a href={`tel:${clinic.phoneRaw}`}>
-                <Phone className="mr-1 h-4 w-4" /> Call for Emergency
-              </a>
             </Button>
           </div>
 
